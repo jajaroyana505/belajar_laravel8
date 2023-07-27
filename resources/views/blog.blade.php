@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog | Posts</title>
-</head>
-<body>
-    <h1>ini halaman Posts</h1>
-</body>
-</html>
+@extends("layout.main")
+
+@section("container")
+
+@foreach ( $posts as $post)
+<article class="mb-5">
+    <a href="posts/{{ $post['slug']}}">
+        <h2>{{$post['title']}}</h2>
+    </a>
+    <h5>by : {{$post['author']}}</h5>
+    <p>{{$post['body']}}</p>
+</article>
+@endforeach
+
+@endsection
