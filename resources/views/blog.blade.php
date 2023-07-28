@@ -4,11 +4,11 @@
 
 @foreach ( $posts as $post)
 <article class="mb-5">
-    <a href="posts/{{ $post['slug']}}">
+    <a href="posts/{{ $post->slug}}">
         <h2>{{$post['title']}}</h2>
     </a>
     <h5>by : {{$post['author']}}</h5>
-    <p>{{$post['body']}}</p>
+    {!! $post->excerpt !!}
 </article>
 @endforeach
 
