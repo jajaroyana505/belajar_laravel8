@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\PDO\PostgresDriver;
 
 /*
@@ -62,4 +63,11 @@ Route::get('/categories/{category:slug}', function (Category $category) {
             'category' => $category->name
         ]
     );
+});
+
+Route::get('/authors/{author:username}', function (User $author) {
+    return view('blog', [
+        'title' => 'User Posts',
+        'posts' => $author->posts,
+    ]);
 });

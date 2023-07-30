@@ -11,7 +11,7 @@
     <a href="/posts/{{ $post->slug}}">
         <h2>{{$post['title']}}</h2>
     </a>
-    <h5>by : {{$post['author']}}</h5>
+    <h5>by : {{$post->author->name}}</h5>
     {!! $post->excerpt !!}
 </article>
 @endforeach
