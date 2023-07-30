@@ -26,12 +26,14 @@ use Illuminate\Database\PDO\PostgresDriver;
 Route::get('/', function () {
     return view("home", [
         "title" => "Home",
+        "active" => "home",
     ]);
 });
 
 Route::get('/about', function () {
     $data = [
         "title" => "About",
+        "active" => "about",
         "nama" => "Naila Nadira",
         "email" => "muhmmadjajaroyana4@gmail.com",
         "img" => "jaja.jpg",
@@ -50,6 +52,7 @@ Route::get('/categories', function (Category $category) {
         'categories',
         [
             'title' => $category->name,
+            "active" => "categories",
             'categories' => Category::all()
         ]
     );
@@ -58,6 +61,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     return view(
         'blog',
         [
+            "active" => "blog",
             'title' => "Post by Category : $category->name",
             'posts' => $category->posts->load('category', 'author'),
         ]
@@ -67,6 +71,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('/authors/{author:username}', function (User $author) {
     return view('blog', [
         'title' => "Post by Author : $author->name",
+        "active" => "blog",
         'posts' => $author->posts->load('category', 'author'),
     ]);
 });
