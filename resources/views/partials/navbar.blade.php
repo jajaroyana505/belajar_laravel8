@@ -12,10 +12,34 @@
                 <a class="nav-link {{($active === 'categories')? 'active': '';}}" href="/categories">Categories</a>
             </div>
             <div class="navbar-nav ms-auto">
-
+                @auth
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome back, {{ auth()->user()->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dashboard"><i class="fa-solid fa-table-columns"></i> MyDashboard</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="fa-solid fa-right-from-bracket"></i> Logut
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                @else
                 <a href="/login" class="nav-link {{($active === 'login')? 'active': '';}}"> <i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
 
+                @endauth
             </div>
+
         </div>
     </div>
 </nav>
