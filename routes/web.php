@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Category;
-use App\Models\User;
-use Illuminate\Database\PDO\PostgresDriver;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,21 +58,25 @@ Route::get('/categories', function (Category $category) {
         ]
     );
 });
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view(
-        'blog',
-        [
-            "active" => "blog",
-            'title' => "Post by Category : $category->name",
-            'posts' => $category->posts->load('category', 'author'),
-        ]
-    );
-});
 
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('blog', [
-        'title' => "Post by Author : $author->name",
-        "active" => "blog",
-        'posts' => $author->posts->load('category', 'author'),
-    ]);
-});
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+// Route::get('/categories/{category:slug}', function (Category $category) {
+//     return view(
+//         'blog',
+//         [
+//             "active" => "blog",
+//             'title' => "Post by Category : $category->name",
+//             'posts' => $category->posts->load('category', 'author'),
+//         ]
+//     );
+// });
+
+// Route::get('/authors/{author:username}', function (User $author) {
+//     return view('blog', [
+//         'title' => "Post by Author : $author->name",
+//         "active" => "blog",
+//         'posts' => $author->posts->load('category', 'author'),
+//     ]);
+// });
