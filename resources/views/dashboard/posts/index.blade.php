@@ -11,7 +11,7 @@
 @endif
 
 <div class="table-responsive small col-lg-8">
-    <a href="/dashboard/posts/create" class="btn btn-primary">Tambah Post</a>
+    <a href="/dashboard/posts/create" class="btn btn-primary">Create a new post</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -29,8 +29,12 @@
                 <td>{{ $post->category->name }}</td>
                 <td>
                     <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><i class="bi bi-eye"></i></a>
-                    <a href="#" class="badge bg-warning"><i class="bi bi-pencil-square"></i></i></a>
-                    <a href="#" class="badge bg-danger"><i class="bi bi-x-circle"></i></i></a>
+                    <a href="/dashboard/posts/{{$post->slug}}/edit" class="badge bg-warning"><i class="bi bi-pencil-square"></i></i></a>
+                    <form action="/dashboard/posts/{{$post->slug}}" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="bi bi-x-circle"></i></button>
+                    </form>
                 </td>
 
             </tr>
