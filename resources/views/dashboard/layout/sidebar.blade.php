@@ -23,11 +23,6 @@
             @can('admin')
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
                 <span>Administrator</span>
-                <a class="link-secondary" href="#" aria-label="Add a new report">
-                    <svg class="bi">
-                        <use xlink:href="#plus-circle" />
-                    </svg>
-                </a>
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
@@ -35,6 +30,35 @@
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories*')? 'active' : '' }}" aria-current="page" href="/dashboard/categories">
                         <i class="bi bi-tags"></i>
                         Post categories
+                    </a>
+                </li>
+            </ul>
+            @endcan
+            @can('admin')
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Organisasi</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/profile*')? 'active' : '' }}" aria-current="page" href="/dashboard/categories">
+                        <i class="bi bi-buildings"></i>
+                        Profile
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/departements*')? 'active' : '' }}" aria-current="page" href="/dashboard/departements">
+                        <i class="bi bi-diagram-2"></i>
+                        Departement
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/profile*')? 'active' : '' }}" aria-current="page" href="/dashboard/categories">
+                        <i class="bi bi-diagram-3"></i>
+                        Divisi
                     </a>
                 </li>
             </ul>

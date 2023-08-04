@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
+use App\Models\Departemen;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -43,6 +43,24 @@ class DatabaseSeeder extends Seeder
 
         Post::factory(20)->create();
 
+        Departemen::create([
+            "name" => "Departemen Pendidikan",
+            "slug" => "departemen-pendidikan",
+            "description" => "Departemen Pendidikan dalam organisasi merancang program pembelajaran, mengajar, dan melatih anggota sesuai kebutuhan organisasi untuk mencapai tujuan dan pertumbuhan yang efektif.",
+            "icon" => "<i class='bi bi-mortarboard'></i>"
+        ]);
+        Departemen::create([
+            "name" => "Departemen Sosial",
+            "slug" => "departemen-sosial",
+            "description" => "Departemen Sosial organisasi mempromosikan kesejahteraan komunitas melalui program-program inklusi, dukungan sosial, dan hubungan positif antaranggota.",
+            "icon" => "<i class='bi bi-people-fill'></i>"
+        ]);
+        Departemen::create([
+            "name" => "Departemen Keorganisasian",
+            "slug" => "departemen-keorganisasian",
+            "description" => "Departemen Keorganisasian mengatur struktur dan sumber daya organisasi demi pencapaian tujuan dengan efisiensi maksimal.",
+            "icon" => "<i class='bi bi-diagram-3'></i>"
+        ]);
         // Post::create([
         //     'title' => 'Judul Pertama',
         //     'category_id' => 1,

@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminDepartemenController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Category;
-
+use App\Models\Departemen;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::get('/', function () {
     return view("home", [
         "title" => "Home",
         "active" => "home",
+        "departements" => Departemen::all(),
     ]);
 });
 
@@ -80,6 +82,7 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
+Route::resource('/dashboard/departements', AdminDepartemenController::class)->except('show')->middleware('admin');
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view(
 //         'blog',
