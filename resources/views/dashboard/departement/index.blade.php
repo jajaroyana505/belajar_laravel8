@@ -11,7 +11,7 @@
 @endif
 
 <div class="table-responsive small ">
-    <a href="/dashboard/categories/create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"></i> Tambah Departemen</a>
+    <a href="/dashboard/departements/create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"></i> Tambah Departemen</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -29,12 +29,14 @@
                 <td>{{ $departement->description }}</td>
                 <td>
                     <a href="/dashboard/categories/{{ $departement->slug }}" class="badge bg-info"><i class="bi bi-eye"></i></a>
-                    <a href="/dashboard/categories/{{$departement->slug}}/edit" class="badge bg-warning"><i class="bi bi-pencil-square"></i></i></a>
-                    <form action="/dashboard/categories/{{$departement->slug}}" method="post" class="d-inline">
+                    <a href="/dashboard/categories/{{$departement->slug}}edit" class="badge bg-warning"><i class="bi bi-pencil-square"></i></i></a>
+                    <form action="/dashboard/departements/{{$departement->slug}}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
+
                         <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="bi bi-x-circle"></i></button>
                     </form>
+
                 </td>
 
             </tr>

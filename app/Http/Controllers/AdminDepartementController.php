@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departemen;
-use App\Http\Requests\StoreDepartemenRequest;
-use App\Http\Requests\UpdateDepartemenRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class AdminDepartemenController extends Controller
+
+
+class AdminDepartementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,24 +29,35 @@ class AdminDepartemenController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.departement/create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDepartemenRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDepartemenRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:100',
+            'icon' => 'required|max:50',
+            'description' => 'required|max:255',
+
+        ]);
+
+        $validatedData['slug'] = Str::of($request->name)->slug('-');
+        Departemen::create($validatedData);
+
+        return redirect('dashboard/departements')->with('success', 'New category has been added!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Departemen  $departemen
+     * @param  \App\Models\Departement  $departement
      * @return \Illuminate\Http\Response
      */
     public function show(Departemen $departemen)
@@ -55,7 +68,7 @@ class AdminDepartemenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Departemen  $departemen
+     * @param  \App\Models\Departement  $departement
      * @return \Illuminate\Http\Response
      */
     public function edit(Departemen $departemen)
@@ -66,11 +79,11 @@ class AdminDepartemenController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDepartemenRequest  $request
-     * @param  \App\Models\Departemen  $departemen
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Departement  $departement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDepartemenRequest $request, Departemen $departemen)
+    public function update(Request $request, Departemen $departemen)
     {
         //
     }
@@ -78,11 +91,12 @@ class AdminDepartemenController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Departemen  $departemen
+     * @param  \App\Models\Departement  $departement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Departemen $departemen)
+    public function destroy(Departemen $departement)
     {
-        //
+        Departemen::destroy($departement->id);
+        return redirect('dashboard/departements')->with('success', 'A Post has been deletted!');
     }
 }

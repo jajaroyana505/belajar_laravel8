@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCategoryController;
-use App\Http\Controllers\AdminDepartemenController;
+use App\Http\Controllers\AdminDepartementController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -82,7 +82,7 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
-Route::resource('/dashboard/departements', AdminDepartemenController::class)->except('show')->middleware('admin');
+Route::resource('/dashboard/departements', AdminDepartementController::class)->middleware('admin');
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view(
 //         'blog',
