@@ -27,6 +27,13 @@
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
 
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/event*')? 'active' : '' }}" aria-current="page" href="/dashboard/events">
+                        <i class="bi bi-calendar2-event"></i>
+                        Event
+                    </a>
+                </li>
+                <li class="nav-item">
+
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories*')? 'active' : '' }}" aria-current="page" href="/dashboard/categories">
                         <i class="bi bi-tags"></i>
                         Post categories
@@ -34,6 +41,7 @@
                 </li>
             </ul>
             @endcan
+
             @can('admin')
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
                 <span>Organisasi</span>

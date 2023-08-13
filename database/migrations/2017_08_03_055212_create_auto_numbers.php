@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAutoNumbers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('event__categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->string('slug');
+        Schema::create('auto_numbers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 32);
+            $table->integer('number');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event__categories');
+        Schema::dropIfExists('auto_numbers');
     }
-};
+}

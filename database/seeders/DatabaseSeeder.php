@@ -44,17 +44,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Event_Category::create([
+            "code" => "SM",
             "name" => "Seminar",
             "slug" => "seminar",
         ]);
         Event_Category::create([
+            "code" => "WS",
             "name" => "Workshop",
             "slug" => "workshop",
         ]);
 
 
         Post::factory(20)->create();
-        Event::factory(5)->create();
+
 
         Departemen::create([
             "name" => "Departemen Pendidikan",

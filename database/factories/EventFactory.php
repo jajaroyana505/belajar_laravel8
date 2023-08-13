@@ -19,7 +19,7 @@ class EventFactory extends Factory
         return [
             'kode' => $this->faker->languageCode(),
             'name' => $this->faker->sentence(mt_rand(2, 5)),
-            'slug' => $this->faker->slug(),
+
             'event_category_id' => mt_rand(1, 3),
             'date' => $this->faker->date("Y-m-d"),
             'time' => $this->faker->time("H:i:s"),

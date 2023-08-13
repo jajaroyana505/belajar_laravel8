@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminDepartementController;
+use App\Http\Controllers\AdminEventController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Category;
 use App\Models\Departemen;
+use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,7 @@ Route::get('/', function () {
         "title" => "Home",
         "active" => "home",
         "departements" => Departemen::all(),
+        "events" => Event::all(),
     ]);
 });
 
@@ -83,21 +87,5 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 Route::resource('/dashboard/departements', AdminDepartementController::class)->middleware('admin');
-// Route::get('/categories/{category:slug}', function (Category $category) {
-//     return view(
-//         'blog',
-//         [
-//             "active" => "blog",
-//             'title' => "Post by Category : $category->name",
-//             'posts' => $category->posts->load('category', 'author'),
-//         ]
-//     );
-// });
 
-// Route::get('/authors/{author:username}', function (User $author) {
-//     return view('blog', [
-//         'title' => "Post by Author : $author->name",
-//         "active" => "blog",
-//         'posts' => $author->posts->load('category', 'author'),
-//     ]);
-// });
+Route::resource('/dashboard/events', AdminEventController::class)->middleware('admin');

@@ -10,9 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-
         // dd($posts->get());
-
         $title = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
@@ -22,7 +20,6 @@ class PostController extends Controller
             $author = User::firstWhere('username', request('author'));
             $title = ' by ' . $author->name;
         }
-
         return view("blog", [
             "title" => "All Posts" . $title,
             "active" => "blog",
@@ -30,7 +27,6 @@ class PostController extends Controller
             // "posts" => Post::all()
         ]);
     }
-
     public function show(Post $post)
     {
         return view('post', [

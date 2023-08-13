@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
+            $table->string('code')->unique();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('event_category_id');
+            $table->string('id_event_category');
             $table->date('date');
             $table->time('time');
             $table->string('vanue');
-            $table->double('htm')->nullable();
+            $table->decimal('htm', $precision = 10, $scale = 0)->nullable();
             $table->text('description');
-            $table->string('poster')->nullable();
-            $table->string('thumbnail')->nullable();
+            $table->text('excerpt');
+            $table->string('poster');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
