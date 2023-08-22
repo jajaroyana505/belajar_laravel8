@@ -36,32 +36,40 @@
         </div>
         </div>
 
-        <!-- Departemen section -->
-        <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">Departments Of Himasi</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                @foreach($departements as $departement)
-                <div class="feature col">
-                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                        {!! $departement->icon !!}
-                    </div>
-                    <h3 class="fs-2 text-body-emphasis"> {{$departement->name}}</h3>
-                    <p>{{ $departement->description }}</p>
-                    <a href="#" class="icon-link">
-                        Selengkapnya...
-                    </a>
-                </div>
-                @endforeach
+
+
+
+
+        <div class="b-example-divider container"></div>
+
+        <h1>Bootstrap 3 Gallery</h1>
+
+        <p class="page-description text-center">Fluid Layout With Overlay Effect</p>
+        <section class="gallery">
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg" alt="Bridge">
             </div>
-        </div>
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg" alt="Park">
+            </div>
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg" alt="Tunnel">
+            </div>
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg" alt="Traffic">
+            </div>
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg" alt="Coast">
+            </div>
+            <div class="item-gallery">
+                <img class="img-thumbnail" src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg" alt="Rails">
+            </div>
 
-
-
-        <div class="b-example-divider"></div>
-
+        </section>
 
 
         <div class="b-example-divider mb-0"></div>
+        <!-- Bagian Events -->
         <section class="py-5  container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto text-center">
@@ -76,7 +84,7 @@
                 <?php for ($i = 1; $i <= 3; $i++) { ?>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="{{ asset('storage/'. $events[0]->poster)}}" class="img-fluid " alt="...">
+                            <img src="{{ asset('storage/'. $events[0]->poster)}}" width="100%" class="img-fluid " alt="...">
                             <div class="card-body">
                                 <a class="text-decoration-none" href="#">
                                     <i class="bi bi-tag"></i>

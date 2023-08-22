@@ -30,6 +30,11 @@ strong{
   color: var(--darkConflowerBlue);
   border-radius: 30px;
 }
+.btn-outline-white{
+  border-color: white;
+  color: var(--darkConflowerBlue);
+  border-radius: 30px;
+}
 
 .truncate {
   height: 40px !important;
@@ -37,6 +42,14 @@ strong{
   text-overflow: ellipsis !important;
   font-weight: 400;
   font-size: 14px;
+}
 
-   
+
+.form-floating{
+  margin-bottom: 10px;
+}
+.form-floating input:focus{
+  outline: none !important;
+	border-color: var(--usafaBlue);
+	box-shadow: 0 0 0 #CF0A0A;
 }

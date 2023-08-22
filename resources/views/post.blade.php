@@ -12,7 +12,7 @@
                 <img src="{{ asset('storage/'. $post->image)}}" class="img-fluid mb-5" alt="...">
             </div>
             @else
-            <img src="https://source.unsplash.com/1200x300?{{ $post->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            <img src="https://source.unsplash.com/1200x300?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}">
             @endif
             {!! $post->body !!}
             <br>

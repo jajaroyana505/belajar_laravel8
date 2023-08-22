@@ -65,6 +65,7 @@ class AdminEventController extends Controller
             $validatedData['poster'] = $request->file('poster')->store('event_images');
         }
         $validatedData['excerpt'] = Str::limit(strip_tags($request->description), 100);
+        $validatedData['code'] = "125.265.262";
 
 
         Event::create($validatedData);

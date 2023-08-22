@@ -8,10 +8,13 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\Departemen;
 use App\Models\Event;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +27,16 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
+Route::get('/laravel', function () {
+    return view('welcome');
+});
 
 Route::get('/', function () {
     return view("home", [
         "title" => "Home",
         "active" => "home",
-        "departements" => Departemen::all(),
         "events" => Event::all(),
     ]);
 });
@@ -43,19 +45,25 @@ Route::get('/about', function () {
     $data = [
         "title" => "About",
         "active" => "about",
-        "nama" => "Naila Nadira",
-        "email" => "muhmmadjajaroyana4@gmail.com",
-        "img" => "jaja.jpg",
+        "departements" => Departemen::all(),
     ];
-    return view("about", $data);
+    return view("events", $data);
+});
+
+Route::get('/events', function () {
+    $data = [
+        "title" => "Events",
+        "active" => "events",
+        "events" => Event::all(),
+    ];
+    return view("events", $data);
 });
 
 
 Route::get('/blog', [PostController::class, 'index']);
+
 // Halaman single post
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-
-
 Route::get('/categories', function (Category $category) {
     return view(
         'categories',
@@ -75,17 +83,40 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
+// Pemberitahuan verifikasi email
+Route::get('/email/verify', function () {
+    return view('auth.verify-notice', [
+        'title' => "Verify email",
+        'active' => "Verify email"
+    ]);
+})->middleware('auth')->name('verification.notice');
+
+// penanganga verifikasi email
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/user/profile');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// mengirim ulang email
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 Route::get('dashboard', function () {
     return view('dashboard.index');
-})->middleware('auth');
+})->middleware('auth', 'verified');
 
+// cek slug
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
+
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-
-
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
-
 Route::resource('/dashboard/departements', AdminDepartementController::class)->middleware('admin');
-
 Route::resource('/dashboard/events', AdminEventController::class)->middleware('admin');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/user/profile', [UserController::class, 'profile']);
+});

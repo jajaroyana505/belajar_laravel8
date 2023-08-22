@@ -195,8 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // Auto number
-        Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
+
 
     ],
 

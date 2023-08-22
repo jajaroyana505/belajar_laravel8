@@ -11,6 +11,7 @@
             <div class="navbar-nav">
                 <a class="nav-link {{($active === 'home')? 'active': '';}}" href="/">Home</a>
                 <a class="nav-link {{($active === 'about')? 'active': '';}}" href="/about">About</a>
+                <a class="nav-link {{($active === 'events')? 'active': '';}}" href="/events">Events</a>
                 <a class="nav-link {{($active === 'blog')? 'active': '';}}" href="/blog">Blogs</a>
                 <a class="nav-link {{($active === 'categories')? 'active': '';}}" href="/categories">Categories</a>
             </div>
@@ -22,7 +23,10 @@
                             Welcome back, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
+                            @can('admin')
                             <li><a class="dropdown-item" href="/dashboard"><i class="fa-solid fa-table-columns"></i> MyDashboard</a></li>
+                            @endcan
+                            <li><a class="dropdown-item" href="/user/profile"><i class="fa-solid fa-user"></i> Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
