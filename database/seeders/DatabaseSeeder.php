@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Event;
 use App\Models\Event_Category;
 use App\Models\Post;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -22,14 +23,22 @@ class DatabaseSeeder extends Seeder
     {
 
         User::create([
-            'name' => 'Muhammad Jaja Royana',
-            'username' => 'jajaroyana',
+            // 'username' => 'jajaroyana',
+            'nim' => '12210792',
             'email' => 'muhammadjajaroyana3@gmail.com',
             'email_verified_at' => '2023-08-14 16:43:02',
             'password' => bcrypt('123456'),
             'is_admin' => 1
         ]);
-        User::factory(3)->create();
+        Student::create([
+            // 'username' => 'jajaroyana',
+            'name' => 'Muhammad Jaja Royana',
+            'nim' => '12210792',
+            'semester' => '5',
+            'prodi' => 'Sistem Informasi',
+            'asal_kampus' => 'Karawang'
+        ]);
+        // User::factory(3)->create();
 
 
         Category::create([
@@ -57,7 +66,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Post::factory(20)->create();
+        // Post::factory(20)->create();
 
 
         Departemen::create([

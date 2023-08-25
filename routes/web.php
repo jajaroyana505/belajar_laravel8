@@ -8,10 +8,12 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\Departemen;
 use App\Models\Event;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -106,7 +108,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::get('dashboard', function () {
     return view('dashboard.index');
-})->middleware('auth', 'verified');
+})->middleware('auth', 'verified', 'admin');
 
 // cek slug
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
@@ -117,6 +119,10 @@ Route::resource('/dashboard/departements', AdminDepartementController::class)->m
 Route::resource('/dashboard/events', AdminEventController::class)->middleware('admin');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'complite'])->group(function () {
     Route::get('/user/profile', [UserController::class, 'profile']);
+    Route::get('/mahasiswa', [StudentController::class, 'index']);
 });
+
+Route::put('/mahasiswa/{student:nim}', [RegisterController::class, 'storePersonalData'])->middleware('auth', 'verified');
+Route::get('/melengkapi-data', [RegisterController::class, 'complitePersonalData'])->middleware('auth', 'verified');

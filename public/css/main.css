@@ -53,3 +53,7 @@ strong{
 	border-color: var(--usafaBlue);
 	box-shadow: 0 0 0 #CF0A0A;
 }
+
+.form-label{
+  font-size: small;
+}

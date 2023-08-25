@@ -44,9 +44,29 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $with = ['student'];
+
+
 
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'nim', 'nim');
+    }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($user) {
+
+    //         $username = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($user->student->name));
+    //         $count = static::where('username', 'LIKE', "$username%")->count();
+    //         $user->username = $count ? $username . $count : $username;
+    //     });
+    // }
 }

@@ -20,7 +20,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Welcome back, {{ auth()->user()->name }}
+                            Welcome back, {{ auth()->user()->username }}
                         </a>
                         <ul class="dropdown-menu">
                             @can('admin')
